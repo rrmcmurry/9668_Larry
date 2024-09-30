@@ -11,7 +11,7 @@ This repository contains the robot code for our test robot, **Larry**. The code 
 
 We are actively working on integrating **Larry** with a Raspberry Pi as a coprocessor. The Raspberry Pi, equipped with a camera and running OpenCV, will assist in vision processing. This is also guided by the [WPI Lib documentation for vision processing](https://docs.wpilib.org/en/latest/docs/software/vision-processing/wpilibpi/index.html).
 
-Note: The code for the Raspberry Pi coprocessor is maintained in a [separate repository](https://github.com/rrmcmurry).
+Note: The code for the Raspberry Pi coprocessor is maintained in a [separate repository](https://github.com/rrmcmurry/WestPi/).
 
 ## How to Use
 
