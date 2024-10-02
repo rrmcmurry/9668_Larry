@@ -110,10 +110,10 @@ public class Robot extends TimedRobot {
     m_launchWheel2.setSmartCurrentLimit(Motor_CurrentLimit);
 
     // Invert the launch and feed wheels on one side
-    m_launchWheel.setInverted(true);
-    m_feedWheel.setInverted(true);
-    m_launchWheel2.setInverted(false);
-    m_feedWheel2.setInverted(false);
+    m_launchWheel.setInverted(false);
+    m_feedWheel.setInverted(false);
+    m_launchWheel2.setInverted(true);
+    m_feedWheel2.setInverted(true);
 
     // Temporarily disable this feed wheel until it is fixed
     m_feedWheel2.disable();
@@ -161,9 +161,9 @@ public class Robot extends TimedRobot {
     leftFront.setIdleMode(IdleMode.kBrake);
     rightRear.setIdleMode(IdleMode.kBrake);
     rightFront.setIdleMode(IdleMode.kBrake);
-    m_launchWheel.setIdleMode(IdleMode.kBrake);
+    m_launchWheel.setIdleMode(IdleMode.kCoast);
     m_feedWheel.setIdleMode(IdleMode.kBrake);
-    m_launchWheel2.setIdleMode(IdleMode.kBrake);
+    m_launchWheel2.setIdleMode(IdleMode.kCoast);
     m_feedWheel2.setIdleMode(IdleMode.kBrake);  
   }
 
