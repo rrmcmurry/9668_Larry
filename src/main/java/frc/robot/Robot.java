@@ -26,6 +26,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -70,6 +72,7 @@ public class Robot extends TimedRobot {
   DoubleSubscriber visionsuby;
   Double X_Axis;
   Double Y_Axis;
+  Integer teleautonomous;
 
   // Robot class constructor 
   public Robot() {
@@ -117,6 +120,8 @@ public class Robot extends TimedRobot {
 
     // Temporarily disable this feed wheel until it is fixed
     m_feedWheel2.disable();
+
+    teleautonomous = 0; 
   }
 
   // This function is called every 20 ms, no matter the mode. 
@@ -190,10 +195,27 @@ public class Robot extends TimedRobot {
       m_feedWheel2.stopMotor();
     }
 
+    // If you press the start button, toggle teleautonmous on or off
+    if (controller.getStartButtonReleased())
+      teleautonomous += 1;
 
 
-    // Drive with Left Controller Stick
-    m_drivetrain.arcadeDrive(controller.getLeftY(),controller.getLeftX());
+
+    if (teleautonomous % 3 == 0) {
+      // Drive with Left Controller Stick
+      m_drivetrain.arcadeDrive(controller.getLeftY(),controller.getLeftX());
+    } else if (teleautonomous % 3 == 1) {
+      // get current rapberry pi drive controller values
+      X_Axis = visionsubx.get();
+      Y_Axis = visionsuby.get();
+      m_drivetrain.curvatureDrive(controller.getLeftY(), controller.getLeftX() + X_Axis, true);
+    } else if (teleautonomous % 3  == 2) {
+      // get current rapberry pi drive controller values
+      X_Axis = visionsubx.get();
+      Y_Axis = visionsuby.get();
+      
+      m_drivetrain.curvatureDrive(Y_Axis, X_Axis, true);
+    }
       
   }
 
